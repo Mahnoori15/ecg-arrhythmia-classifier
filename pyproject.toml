@@ -1,0 +1,27 @@
+[project]
+name = "ecg-arrhythmia-classifier"
+version = "0.1.0"
+description = "Inter-patient heartbeat classification on MIT-BIH with a 1D CNN and RR-interval features"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "scikit-learn>=1.4",
+    "matplotlib>=3.8",
+    "wfdb>=4.1",
+    "torch>=2.2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
