@@ -58,7 +58,7 @@ def test_model_learns_synthetic_beats():
     torch.manual_seed(0)
     X, F, y = segment_beats(*synthetic_ecg(400))
     Xv, Fv, yv = segment_beats(*synthetic_ecg(150))
-    model = fit(ECGNet(), make_loader(X, F, y, 64, True), make_loader(Xv, Fv, yv), y, yv, epochs=4)
+    model = fit(ECGNet(), make_loader(X, F, y, 32, True), make_loader(Xv, Fv, yv), y, yv, epochs=15)
     from ecg.train import predict
     assert report(yv, predict(model, make_loader(Xv, Fv, yv)))["macro_f1"] > 0.9
 
