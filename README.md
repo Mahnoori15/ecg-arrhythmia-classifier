@@ -23,7 +23,7 @@ Many published ECG models report ~99% accuracy, but they often split beats rando
 2. **Filter** lead MLII with a 0.5–40 Hz Butterworth band-pass to remove baseline wander and noise
 3. **Segment** a 256-sample window (~0.71 s) around each annotated R peak, z-scored per beat
 4. **RR features**: pre-RR, post-RR, local mean RR and pre/post ratio, normalised by each patient's mean RR so they transfer across patients. This matters most for S beats, which look normal but arrive early.
-5. **Model**: 4-block 1D CNN for beat shape, concatenated with RR features into a small classifier head
+5. **Model**: a 4-block 1D CNN for beat shape plus a separate rhythm branch (normalised RR features), combined in a small classifier head
 6. **Training**: class-weighted cross-entropy (the classes are heavily imbalanced), early stopping on macro-F1 using held-out DS1 patients
 7. **Evaluation** on unseen DS2 patients: per-class precision, sensitivity, F1 and a confusion matrix
 
